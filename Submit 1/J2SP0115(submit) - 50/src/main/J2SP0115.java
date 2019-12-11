@@ -86,11 +86,9 @@ public class J2SP0115 extends javax.swing.JFrame {
 
         lbEmail.setText("Email");
 
-        txtCode.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                txtCodeCaretPositionChanged(evt);
+        txtCode.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodeFocusLost(evt);
             }
         });
         txtCode.addActionListener(new java.awt.event.ActionListener() {
@@ -216,10 +214,12 @@ public class J2SP0115 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void txtCodeCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtCodeCaretPositionChanged
+    private void txtCodeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodeFocusLost
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtCodeCaretPositionChanged
+        if (!txtCode.getText().matches(VALID_CODE)) {
+            JOptionPane.showMessageDialog(this, "Code max length is 10, not contains special characters (@, #, $)");
+        }
+    }//GEN-LAST:event_txtCodeFocusLost
 
     /**
      * @param args the command line arguments

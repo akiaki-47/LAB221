@@ -18,18 +18,19 @@ public class List extends javax.swing.JFrame {
      * Creates new form List
      */
     public void setImage(String url) {
-    ImageIcon icon = new ImageIcon(this.getClass().getResource(url));
+        ImageIcon icon = new ImageIcon(this.getClass().getResource(url));
         Image img = icon.getImage();
         img = img.getScaledInstance(lbView.getWidth(), lbView.getHeight(), Image.SCALE_SMOOTH);
         icon = new ImageIcon(img);
         lbView.setIcon(icon);
     }
+
     public List() {
         initComponents();
         Combobox c = new Combobox();
         c.setVisible(true);
         jList2.setSelectedIndex(0);
-        setImage("/"+jList2.getSelectedValue()+".jpg");
+        setImage("/" + jList2.getSelectedValue() + ".jpg");
     }
 
     /**
@@ -97,7 +98,7 @@ public class List extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
-        setImage("/"+jList2.getSelectedValue()+".jpg");
+        setImage("/" + jList2.getSelectedValue() + ".jpg");
     }//GEN-LAST:event_jList2ValueChanged
 
     /**

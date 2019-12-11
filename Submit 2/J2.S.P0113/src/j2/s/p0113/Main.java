@@ -26,6 +26,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         setYear();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -247,7 +248,7 @@ public class Main extends javax.swing.JFrame {
     public JButton getBtnRemove() {
         return btnRemove;
     }
-    
+
     public JComboBox<String> getCbxPublishYear() {
         return cbxPublishedYear;
     }
@@ -255,23 +256,23 @@ public class Main extends javax.swing.JFrame {
     public JCheckBox getCbForRent() {
         return cbForRent;
     }
-    
+
     public JList<String> getJList1() {
         return jList1;
     }
-    
+
     public JTextField getTxtAuthor() {
         return txtAuthor;
     }
-    
+
     public JTextField getTxtBookCode() {
         return txtBookCode;
     }
-    
+
     public JTextField getTxtBookName() {
         return txtBookName;
     }
-    
+
     public JTextField getTxtPublisher() {
         return txtPublisher;
     }

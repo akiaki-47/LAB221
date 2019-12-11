@@ -10,8 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -65,7 +63,7 @@ public class Controller {
                 Boolean rent = false;
                 int pubYear = (int) main.getCbxPublishYear().getSelectedItem();
                 if (main.getTxtBookCode().isEnabled() == true) {
-                    
+
                     if (main.getCbForRent().isSelected()) {
                         rent = true;
                     }

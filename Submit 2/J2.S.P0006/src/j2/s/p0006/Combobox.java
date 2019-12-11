@@ -18,16 +18,17 @@ public class Combobox extends javax.swing.JFrame {
      * Creates new form Combobox
      */
     public void setImage(String url) {
-    ImageIcon icon = new ImageIcon(this.getClass().getResource(url));
+        ImageIcon icon = new ImageIcon(this.getClass().getResource(url));
         Image img = icon.getImage();
         img = img.getScaledInstance(lbView.getWidth(), lbView.getHeight(), Image.SCALE_SMOOTH);
         icon = new ImageIcon(img);
         lbView.setIcon(icon);
     }
+
     public Combobox() {
         initComponents();
         this.setLocation(500, 200);
-        setImage("/"+jComboBox1.getSelectedItem()+".jpg");
+        setImage("/" + jComboBox1.getSelectedItem() + ".jpg");
     }
 
     /**
@@ -78,7 +79,7 @@ public class Combobox extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        setImage("/"+jComboBox1.getSelectedItem()+".jpg");
+        setImage("/" + jComboBox1.getSelectedItem() + ".jpg");
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
