@@ -29,6 +29,10 @@ public class NPG2 extends javax.swing.JFrame {
     int labelIndex = 0, moveCount = 1;
     Timer time;
     int count = 0;
+    int key;
+    int emptyIndex;
+    boolean valid;
+    ArrayList<Integer> labelList;
 
     public NPG2() {
         initComponents();
@@ -77,10 +81,6 @@ public class NPG2 extends javax.swing.JFrame {
         button.add(btn15);
         button.add(btn16);
         Random rd = new Random();
-        int key;
-        int emptyIndex;
-        boolean valid;
-        ArrayList<Integer> labelList;
         do {
             key = 0;
             emptyIndex = 0;
@@ -107,6 +107,7 @@ public class NPG2 extends javax.swing.JFrame {
                 valid = true;
             }
         } while (!valid);
+        System.out.println(emptyIndex + "," + key);
         for (int i = 0; i < 16; i++) {
             button.get(i).setText((labelList.get(i) == 0) ? "" : labelList.get(i) + "");
         }

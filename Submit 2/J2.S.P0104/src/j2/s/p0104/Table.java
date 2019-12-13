@@ -6,8 +6,6 @@
 package j2.s.p0104;
 
 import java.awt.Rectangle;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.SelectionModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
@@ -159,7 +157,6 @@ public class Table extends javax.swing.JFrame {
         Rectangle rect = table.getCellRect(selectedRow - 1, 5, true);
         table.scrollRectToVisible(rect);
         table.setRowSelectionInterval(selectedRow - 1, selectedRow - 1);
-        
     }//GEN-LAST:event_btnPreActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed

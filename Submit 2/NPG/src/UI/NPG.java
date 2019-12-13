@@ -35,6 +35,7 @@ public class NPG extends javax.swing.JFrame {
         setResizable(false);
         makeNewGame();
         countUpTime();
+
     }
 
     private void countUpTime() {
@@ -46,7 +47,7 @@ public class NPG extends javax.swing.JFrame {
                 }
                 count++;
                 if (count < 1000000000) {
-                    lbElapsed.setText(Integer.toString(count) + " sec");
+                    lbElapsed.setText(Integer.toString(count - 1) + " sec");
                 } else {
                     ((Timer) (e.getSource())).stop();
                 }
@@ -84,9 +85,11 @@ public class NPG extends javax.swing.JFrame {
                 for (int j = i + 1; j < 9; j++) {
                     if (labelList.get(i) > labelList.get(j) && labelList.get(j) != 0) {
                         key++;
+                        System.out.println(labelList.get(i) + ", " + labelList.get(j));
                     }
                 }
             }
+
         } while (key % 2 != 0);
         for (int i = 0; i < 9; i++) {
             button.get(i).setText((labelList.get(i) == 0) ? "" : labelList.get(i) + "");
@@ -348,6 +351,7 @@ public class NPG extends javax.swing.JFrame {
     private void btnNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewGameActionPerformed
         // TODO add your handling code here:
         makeNewGame();
+        countUpTime();
     }//GEN-LAST:event_btnNewGameActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
