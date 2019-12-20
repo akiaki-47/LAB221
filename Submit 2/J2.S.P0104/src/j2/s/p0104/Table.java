@@ -14,7 +14,7 @@ import javax.swing.ListSelectionModel;
  * @author Admin
  */
 public class Table extends javax.swing.JFrame {
-    
+
     public Table() {
         initComponents();
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -138,6 +138,28 @@ public class Table extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
+        int endrow = table.getRowCount();
+        Rectangle rect = table.getCellRect(endrow, 5, true);
+        table.scrollRectToVisible(rect);
+        table.setRowSelectionInterval(table.getRowCount() - 1, table.getRowCount() - 1);
+    }//GEN-LAST:event_btnLastActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "No row was selected");
+            return;
+        }
+        if (selectedRow == table.getRowCount() - 1) {
+            JOptionPane.showMessageDialog(this, "Can't not to next");
+            return;
+        }
+        Rectangle rect = table.getCellRect(selectedRow + 1, 5, true);
+        table.scrollRectToVisible(rect);
+        table.setRowSelectionInterval(selectedRow + 1, selectedRow + 1);
+    }//GEN-LAST:event_btnNextActionPerformed
+
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
         Rectangle rect = table.getCellRect(0, 5, true);
         table.scrollRectToVisible(rect);
@@ -158,28 +180,6 @@ public class Table extends javax.swing.JFrame {
         table.scrollRectToVisible(rect);
         table.setRowSelectionInterval(selectedRow - 1, selectedRow - 1);
     }//GEN-LAST:event_btnPreActionPerformed
-
-    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        int selectedRow = table.getSelectedRow();
-        if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(this, "No row was selected");
-            return;
-        }
-        if (selectedRow == table.getRowCount() - 1) {
-            JOptionPane.showMessageDialog(this, "Can't not to next");
-            return;
-        }
-        Rectangle rect = table.getCellRect(selectedRow + 1, 5, true);
-        table.scrollRectToVisible(rect);
-        table.setRowSelectionInterval(selectedRow + 1, selectedRow + 1);
-    }//GEN-LAST:event_btnNextActionPerformed
-
-    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-        int endrow = table.getRowCount();
-        Rectangle rect = table.getCellRect(endrow, 5, true);
-        table.scrollRectToVisible(rect);
-        table.setRowSelectionInterval(table.getRowCount() - 1, table.getRowCount() - 1);
-    }//GEN-LAST:event_btnLastActionPerformed
 
     /**
      * @param args the command line arguments

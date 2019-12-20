@@ -28,6 +28,17 @@ public class Main extends javax.swing.JFrame {
         setYear();
         setLocationRelativeTo(null);
     }
+    
+    public void setYear() {
+        Vector v = new Vector();
+        Calendar c = Calendar.getInstance();
+        int d = c.get(Calendar.YEAR);
+        for (int i = 1900; i < d; i++) {
+            v.add(i);
+        }
+        DefaultComboBoxModel model = new DefaultComboBoxModel(v);
+        cbxPublishedYear.setModel(model);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -192,16 +203,7 @@ public class Main extends javax.swing.JFrame {
         txtBookCode.setEnabled(true);
         jList1.clearSelection();
     }//GEN-LAST:event_btnNewActionPerformed
-    public void setYear() {
-        Vector v = new Vector();
-        Calendar c = Calendar.getInstance();
-        int d = c.get(Calendar.YEAR);
-        for (int i = 1900; i < d; i++) {
-            v.add(i);
-        }
-        DefaultComboBoxModel model = new DefaultComboBoxModel(v);
-        cbxPublishedYear.setModel(model);
-    }
+    
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed

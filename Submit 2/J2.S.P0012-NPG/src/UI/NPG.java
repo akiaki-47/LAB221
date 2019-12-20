@@ -5,14 +5,10 @@
  */
 package UI;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 
 /**
  *
@@ -24,9 +20,7 @@ public class NPG extends javax.swing.JFrame {
      * Creates new form NPG
      */
     ArrayList<JButton> button;
-    int labelIndex = 0, moveCount = 1;
-    Timer time;
-    int count = 0;
+    int labelIndex = 0;
 
     public NPG() {
         initComponents();
@@ -34,27 +28,6 @@ public class NPG extends javax.swing.JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         makeNewGame();
-        countUpTime();
-
-    }
-
-    private void countUpTime() {
-        time = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (checkWin()) {
-                    time.stop();
-                }
-                count = count + 1;
-                if (count < 1000000000) {
-                    lbElapsed.setText(Integer.toString(count) + " sec");
-                } else {
-                    ((Timer) (e.getSource())).stop();
-                }
-            }
-        });
-        time.setInitialDelay(0);
-        time.start();
     }
 
     private void makeNewGame() {
@@ -85,19 +58,13 @@ public class NPG extends javax.swing.JFrame {
                 for (int j = i + 1; j < 9; j++) {
                     if (labelList.get(i) > labelList.get(j) && labelList.get(j) != 0) {
                         key++;
-                        System.out.println(labelList.get(i) + ", " + labelList.get(j));
                     }
                 }
             }
-
         } while (key % 2 != 0);
         for (int i = 0; i < 9; i++) {
             button.get(i).setText((labelList.get(i) == 0) ? "" : labelList.get(i) + "");
         }
-        moveCount = 1;
-        lbMoveCount.setText("0");
-        count = 0;
-        lbElapsed.setText("0 sec");
     }
 
     private boolean checkWin() {
@@ -134,12 +101,6 @@ public class NPG extends javax.swing.JFrame {
         btn8 = new javax.swing.JButton();
         btn9 = new javax.swing.JButton();
         btnNewGame = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        cboSize = new javax.swing.JComboBox<>();
-        lbMoveCount = new javax.swing.JLabel();
-        lbElapsed = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -256,71 +217,27 @@ public class NPG extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Move count: ");
-
-        jLabel2.setText("Elapsed: ");
-
-        jLabel3.setText("Size: ");
-
-        cboSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3x3", "4x4" }));
-        cboSize.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboSizeActionPerformed(evt);
-            }
-        });
-
-        lbMoveCount.setText("0");
-
-        lbElapsed.setText("0 sec");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbMoveCount, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbElapsed, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(btnNewGame)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pn3x3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(btnNewGame)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pn3x3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(lbMoveCount))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(lbElapsed))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(cboSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNewGame)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(11, 11, 11))
         );
 
         pack();
@@ -331,12 +248,10 @@ public class NPG extends javax.swing.JFrame {
         if (btn2.getText() == "") {
             btn2.setText(btn1.getText());
             btn1.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn4.getText() == "") {
             btn4.setText(btn1.getText());
             btn1.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (checkWin()) {
             int choice = JOptionPane.showConfirmDialog(this, "You win!~ Do you want play again?", "NPG", JOptionPane.YES_NO_OPTION);
@@ -351,7 +266,6 @@ public class NPG extends javax.swing.JFrame {
     private void btnNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewGameActionPerformed
         // TODO add your handling code here:
         makeNewGame();
-        countUpTime();
     }//GEN-LAST:event_btnNewGameActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
@@ -359,17 +273,14 @@ public class NPG extends javax.swing.JFrame {
         if (btn1.getText() == "") {
             btn1.setText(btn2.getText());
             btn2.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn3.getText() == "") {
             btn3.setText(btn2.getText());
             btn2.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn5.getText() == "") {
             btn5.setText(btn2.getText());
             btn2.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (checkWin()) {
             int choice = JOptionPane.showConfirmDialog(this, "You win!~ Do you want play again?", "NPG", JOptionPane.YES_NO_OPTION);
@@ -386,12 +297,10 @@ public class NPG extends javax.swing.JFrame {
         if (btn2.getText() == "") {
             btn2.setText(btn3.getText());
             btn3.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn6.getText() == "") {
             btn6.setText(btn3.getText());
             btn3.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (checkWin()) {
             int choice = JOptionPane.showConfirmDialog(this, "You win!~ Do you want play again?", "NPG", JOptionPane.YES_NO_OPTION);
@@ -408,12 +317,10 @@ public class NPG extends javax.swing.JFrame {
         if (btn4.getText() == "") {
             btn4.setText(btn7.getText());
             btn7.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn8.getText() == "") {
             btn8.setText(btn7.getText());
             btn7.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (checkWin()) {
             int choice = JOptionPane.showConfirmDialog(this, "You win!~ Do you want play again?", "NPG", JOptionPane.YES_NO_OPTION);
@@ -430,12 +337,10 @@ public class NPG extends javax.swing.JFrame {
         if (btn6.getText() == "") {
             btn6.setText(btn9.getText());
             btn9.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn8.getText() == "") {
             btn8.setText(btn9.getText());
             btn9.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (checkWin()) {
             int choice = JOptionPane.showConfirmDialog(this, "You win!~ Do you want play again?", "NPG", JOptionPane.YES_NO_OPTION);
@@ -452,17 +357,14 @@ public class NPG extends javax.swing.JFrame {
         if (btn1.getText() == "") {
             btn1.setText(btn4.getText());
             btn4.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn5.getText() == "") {
             btn5.setText(btn4.getText());
             btn4.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn7.getText() == "") {
             btn7.setText(btn4.getText());
             btn4.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (checkWin()) {
             int choice = JOptionPane.showConfirmDialog(this, "You win!~ Do you want play again?", "NPG", JOptionPane.YES_NO_OPTION);
@@ -480,17 +382,14 @@ public class NPG extends javax.swing.JFrame {
         if (btn3.getText() == "") {
             btn3.setText(btn6.getText());
             btn6.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn5.getText() == "") {
             btn5.setText(btn6.getText());
             btn6.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn9.getText() == "") {
             btn9.setText(btn6.getText());
             btn6.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (checkWin()) {
             int choice = JOptionPane.showConfirmDialog(this, "You win!~ Do you want play again?", "NPG", JOptionPane.YES_NO_OPTION);
@@ -508,17 +407,14 @@ public class NPG extends javax.swing.JFrame {
         if (btn5.getText() == "") {
             btn5.setText(btn8.getText());
             btn8.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn7.getText() == "") {
             btn7.setText(btn8.getText());
             btn8.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn9.getText() == "") {
             btn9.setText(btn8.getText());
             btn8.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (checkWin()) {
             int choice = JOptionPane.showConfirmDialog(this, "You win!~ Do you want play again?", "NPG", JOptionPane.YES_NO_OPTION);
@@ -535,22 +431,18 @@ public class NPG extends javax.swing.JFrame {
         if (btn2.getText() == "") {
             btn2.setText(btn5.getText());
             btn5.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn4.getText() == "") {
             btn4.setText(btn5.getText());
             btn5.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn6.getText() == "") {
             btn6.setText(btn5.getText());
             btn5.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (btn8.getText() == "") {
             btn8.setText(btn5.getText());
             btn5.setText("");
-            lbMoveCount.setText(String.valueOf(moveCount++));
         }
         if (checkWin()) {
             int choice = JOptionPane.showConfirmDialog(this, "You win!~ Do you want play again?", "NPG", JOptionPane.YES_NO_OPTION);
@@ -561,15 +453,6 @@ public class NPG extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btn5ActionPerformed
-
-    private void cboSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSizeActionPerformed
-        // TODO add your handling code here:
-        if (cboSize.getSelectedIndex() == 1) {
-            JFrame frame = new NPG2();
-            frame.setVisible(true);
-            this.setVisible(false);
-        }
-    }//GEN-LAST:event_cboSizeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -617,12 +500,6 @@ public class NPG extends javax.swing.JFrame {
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
     private javax.swing.JButton btnNewGame;
-    private javax.swing.JComboBox<String> cboSize;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel lbElapsed;
-    private javax.swing.JLabel lbMoveCount;
     private javax.swing.JPanel pn3x3;
     // End of variables declaration//GEN-END:variables
 }

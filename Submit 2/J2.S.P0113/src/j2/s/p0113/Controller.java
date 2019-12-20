@@ -63,7 +63,7 @@ public class Controller {
                 Boolean rent = false;
                 int pubYear = (int) main.getCbxPublishYear().getSelectedItem();
                 if (main.getTxtBookCode().isEnabled() == true) {
-
+                    
                     if (main.getCbForRent().isSelected()) {
                         rent = true;
                     }
@@ -96,6 +96,7 @@ public class Controller {
                             book.setPublisher(pub);
                             book.setPublishedYear(pubYear);
                             book.setForRent(rent);
+                            addBookJList();
                             JOptionPane.showMessageDialog(main, "Update successfully");
                             return;
                         }
@@ -166,12 +167,12 @@ public class Controller {
     }
 
     public void addBookJList() {
-        ArrayList<String> nameListAccout = new ArrayList<>();
+        ArrayList<String> nameListAccount = new ArrayList<>();
         for (int i = 0; i < listBook.size(); i++) {
-            nameListAccout.add(listBook.get(i).getBookName());
+            nameListAccount.add(listBook.get(i).getBookName());
         }
-        String[] es = new String[nameListAccout.size()];
-        es = nameListAccout.toArray(es);
+        String[] es = new String[nameListAccount.size()];
+        es = nameListAccount.toArray(es);
         main.getJList1().setListData(es);
     }
 

@@ -14,8 +14,9 @@ import java.util.Date;
  */
 public class DigitalClock extends javax.swing.JFrame implements Runnable {
 
-    private final SimpleDateFormat  dateTime = new SimpleDateFormat("hh:mm:ss a");
-    
+    private final SimpleDateFormat dateTime = new SimpleDateFormat("hh:mm:ss a");
+    private Integer count = 0;
+
     public DigitalClock() {
         initComponents();
         setResizable(false);
@@ -25,11 +26,9 @@ public class DigitalClock extends javax.swing.JFrame implements Runnable {
         t.start();
     }
 
-    private void updateTime(Date date){
-        String time = dateTime.format(date);
-        this.txtTime.setText(time);
+    private void updateTime(int count) {
+        this.jLabel1.setText(String.valueOf(count));
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,6 +42,8 @@ public class DigitalClock extends javax.swing.JFrame implements Runnable {
         jPanel1 = new javax.swing.JPanel();
         txtDigitalClock = new javax.swing.JLabel();
         txtTime = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        btnCount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,12 +55,25 @@ public class DigitalClock extends javax.swing.JFrame implements Runnable {
         txtTime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtTime.setText("00:00:00");
 
+        btnCount.setText("Start");
+        btnCount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCountActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(txtDigitalClock, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(txtTime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCount)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,7 +82,11 @@ public class DigitalClock extends javax.swing.JFrame implements Runnable {
                 .addComponent(txtDigitalClock, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCount, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -84,6 +102,11 @@ public class DigitalClock extends javax.swing.JFrame implements Runnable {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnCountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,6 +144,8 @@ public class DigitalClock extends javax.swing.JFrame implements Runnable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCount;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel txtDigitalClock;
     private javax.swing.JLabel txtTime;
@@ -129,13 +154,15 @@ public class DigitalClock extends javax.swing.JFrame implements Runnable {
     @Override
     public void run() {
         while (true) {
-            Date dateTime = new Date();
-            updateTime(dateTime);
+            Thread t;
             try {
-                Thread t = new Thread();
-                t.sleep(1000);
+                while (true) {
+                    count++;
+                    updateTime(count);
+                    t = new Thread();
+                    t.sleep(1000);
+                }
             } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }
